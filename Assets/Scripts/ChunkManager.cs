@@ -1,24 +1,74 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEditor;
 using System.IO;
 
 public class ChunkManager : MonoBehaviour
 {
-    public GameObject stone;
+    string fileName;
 
-    void Start ()
+    [SerializeField]
+    private List<string> blocks;
+
+    StreamReader reader;
+
+    void Start()
     {
-        //GameObject stone = (GameObject)AssetDatabase.LoadAssetAtPath(("Assets/Prefabs/Stone"), typeof(GameObject));
+        Debug.Log(transform.position);
 
-        int i = 0;
-
-		foreach (Transform block in transform)
+        // set file to read and write from
+        fileName = transform.position.x.ToString() + " " + transform.position.z.ToString();
+        
+        if (!File.Exists("Assets/StreamingAssets/" + fileName + ".txt"))
         {
-            string path = "Assets/StreamingAssets/0";
-            
-            Instantiate(stone, block.position, Quaternion.identity);
+            FileUtil.CopyFileOrDirectory("Assets/StreamingAssets/default.txt", "Assets/StreamingAssets/" + fileName + ".txt");
+
+            Debug.Log(fileName);
+        }
+
+        reader = new StreamReader("Assets/StreamingAssets/" + fileName + ".txt");
+               
+        GameObject stone = (GameObject)Resources.Load("Blocks/Stone", typeof(GameObject));
+        GameObject air = (GameObject)Resources.Load("Blocks/Air", typeof(GameObject));
+
+        // list of blocks in this chunk
+        blocks = new List<string>();
+
+        // read file
+        using (reader)
+        {
+            // while not fucked up
+            while (true)
+            {
+                // read line
+                string line = reader.ReadLine();
+
+                // add to list or break
+                if (line != null)
+                {
+                    blocks.Add(line);
+                }
+                else
+                { 
+                    break;
+                }
+            }
+        }
+        
+        int i = 0;
+        foreach (Transform block in transform)
+        {
+            if (blocks[i] == "1")
+            {
+                Instantiate(stone, block);
+            }
+            else
+            {
+                Instantiate(air, block);
+            }
 
             i++;
         }
-	}
+    }
 }

@@ -16,22 +16,22 @@ public class PlayerMovement : MonoBehaviour
     {
 		if (Input.GetKey("w"))
         {
-            transform.position += (transform.forward * (moveSpeed * 0.01f)) ;
+            transform.position += (transform.forward * (Time.deltaTime * moveSpeed));
         }
 
         if (Input.GetKey("s"))
         {
-            transform.position += -(transform.forward * (moveSpeed * 0.01f));
+            transform.position += -(transform.forward * (Time.deltaTime * moveSpeed));
         }
 
         if (Input.GetKey("a"))
         {
-            transform.position += -(transform.right * (moveSpeed * 0.01f));
+            transform.position += -(transform.right * (Time.deltaTime * moveSpeed));
         }
 
         if (Input.GetKey("d"))
         {
-            transform.position += (transform.right * (moveSpeed * 0.01f));
+            transform.position += (transform.right * (Time.deltaTime * moveSpeed));
         }
 
         if (Input.GetKey("q"))
