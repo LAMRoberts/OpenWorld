@@ -8,19 +8,19 @@ public class WorldGenerator : MonoBehaviour
 
     private PlayerWorldView pwv;
 
-    GameObject chunkNode;
-    GameObject chunk;
+    GameObject chunkNodePrefab;
+    GameObject chunkPrefab;
 
     private void Start ()
     {
-        chunkNode = (GameObject)Resources.Load("ChunkNode", typeof(GameObject));
-        chunk = (GameObject)Resources.Load("Chunk", typeof(GameObject));
+        chunkNodePrefab = (GameObject)Resources.Load("ChunkNode", typeof(GameObject));
+        chunkPrefab = (GameObject)Resources.Load("Chunk", typeof(GameObject));
 
         for (int y = -256; y < 256; y += 16)
         {
             for (int x = -256; x < 256; x += 16)
             {
-                GameObject c = Instantiate(chunkNode, transform);
+                GameObject c = Instantiate(chunkNodePrefab, transform);
                 c.transform.position = new Vector3(x + 8, 0.5f, y + 8);
             }
         }
@@ -30,17 +30,19 @@ public class WorldGenerator : MonoBehaviour
 
     private void Update()
     {
-        foreach (GameObject node in pwv.chunkNodes)
+        foreach (GameObject playerChunkNode in pwv.playerChunkNodes)
         {
-            if (node.transform.childCount == 0)
+            if (playerChunkNode.transform.childCount == 0)
             {
-                Instantiate(chunk, node.transform);
+                Instantiate(chunkPrefab, playerChunkNode.transform);
             }
         }
     }
 
-    public void DestroyChunk(GameObject parent)
+    public void DestroyChunk(Transform worldChunkNode)
     {
+        Transform worldChunk = worldChunkNode.transform.GetChild(0);
 
+        Destroy(worldChunk.gameObject);
     }
 }
