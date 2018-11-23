@@ -30,7 +30,7 @@ public class ChunkManager : MonoBehaviour
         GameObject stone = (GameObject)Resources.Load("Blocks/Stone", typeof(GameObject));
         GameObject dirt = (GameObject)Resources.Load("Blocks/Dirt", typeof(GameObject));
         GameObject grass = (GameObject)Resources.Load("Blocks/Grass", typeof(GameObject));
-        GameObject air = (GameObject)Resources.Load("Blocks/Air", typeof(GameObject));
+        GameObject air = (GameObject)Resources.Load("Air", typeof(GameObject));
 
         // list of blocks in this chunk
         blocks = new List<string>();

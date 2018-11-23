@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class HighlightScript : MonoBehaviour
 {
-    private struct Block
+    public struct Block
     {
-        GameObject blockType;
-        Material defaultMaterial;
-        Material highlightedMaterial;
+        public GameObject blockType;
+        public Material defaultMaterial;
+        public Material highlightedMaterial;
+
+        public Block(GameObject bt, Material dm, Material hm)
+        {
+            blockType = bt;
+            defaultMaterial = dm;
+            highlightedMaterial = hm;
+        }
     }
-
-    [SerializeField]
-    private Object[] defaultMaterials;
-    [SerializeField]
-    private Object[] highlightedMaterials;
-
-    [SerializeField]
     private List<Block> blocks;
-
-    public Material defaultMaterial;
-    public Material highlightMaterial;
 
     private GameObject player;
 
@@ -28,11 +25,18 @@ public class HighlightScript : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        defaultMaterials = Resources.LoadAll("Blocks/Materials/Default");
+        Material[] defaultMaterials = Resources.LoadAll<Material>("Materials/Default");
+        Material[] highlightedMaterials = Resources.LoadAll<Material>("Materials/Highlighted");
 
-        foreach (Material m in defaultMaterials)
+        GameObject[] blockTypes = Resources.LoadAll<GameObject>("Blocks");
+
+        blocks = new List<Block>();
+
+        for (int i = 0; i < blockTypes.Length; i++)
         {
+            Block temp = new Block(blockTypes[i], defaultMaterials[i], highlightedMaterials[i]);
 
+            blocks.Add(temp);
         }
     }
 
@@ -40,18 +44,12 @@ public class HighlightScript : MonoBehaviour
     {
         if (player.GetComponent<PlayerWorldView>().getLastHighlightedObject() != null)
         {
-            if (player.GetComponent<PlayerWorldView>().getLastHighlightedObject().GetComponent<Renderer>().material != defaultMaterial)
-            {
-                player.GetComponent<PlayerWorldView>().getLastHighlightedObject().GetComponent<Renderer>().material = defaultMaterial;
-            }
+            player.GetComponent<PlayerWorldView>().getLastHighlightedObject().GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
 
         if (player.GetComponent<PlayerWorldView>().getHighlightedObject() != null)
         {
-            if (player.GetComponent<PlayerWorldView>().getHighlightedObject().GetComponent<Renderer>().material != highlightMaterial)
-            {
-                player.GetComponent<PlayerWorldView>().getHighlightedObject().GetComponent<Renderer>().material = highlightMaterial;
-            }
+            player.GetComponent<PlayerWorldView>().getHighlightedObject().GetComponent<Renderer>().material.color = new Color(0.5f, 0.75f, 1.0f, 1.0f);          
         }
     }
 }
