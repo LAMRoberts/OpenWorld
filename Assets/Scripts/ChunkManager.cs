@@ -15,8 +15,6 @@ public class ChunkManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(transform.position);
-
         // set file to read and write from
         fileName = transform.position.x.ToString() + " " + transform.position.z.ToString();
         

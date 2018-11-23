@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class PlayerWorldView : MonoBehaviour
 {
+    public Camera playerCam;
+    public Camera cullCam;
     public Transform world;
     public float loadDistance;
     public List<GameObject> playerChunkNodes;
     public float reach;
 
-    private Camera playerCam;
-    private Camera cullCam;
+    private Plane[] planes;
+    private RaycastHit hit;
 
-	private void Start ()
+    [SerializeField]
+    private GameObject highlightedObject = null;
+    [SerializeField]
+    private GameObject lastHighlightedObject = null;
+
+    private void Start ()
     {
         playerChunkNodes = new List<GameObject>();
 
-        playerCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        cullCam = GameObject.FindGameObjectWithTag("Cull Camera").GetComponent<Camera>();
         loadDistance += Mathf.Abs(cullCam.transform.position.z);
-	}
+
+        hit = new RaycastHit();
+    }
 
     private void Update()
     {
-        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cullCam);
+        planes = GeometryUtility.CalculateFrustumPlanes(cullCam);
 
         foreach (Transform worldChunkNode in world)
         {
@@ -52,26 +59,31 @@ public class PlayerWorldView : MonoBehaviour
                 }
             }
         }
-
-        RaycastHit hit = new RaycastHit();
-
+        
+        // raycast to block
         if (Physics.Raycast(playerCam.transform.position, transform.forward, out hit))
         {
+            // if block is in range
             if (hit.distance < reach)
             {
-                Debug.DrawRay(playerCam.transform.position, transform.forward * reach, Color.green);
+                // set last highlighted block to the block that was highlighted last
+                if (highlightedObject != null)
+                {
+                    lastHighlightedObject = highlightedObject;
+                }                
 
-                Debug.Log(hit.transform);
+                // set highlighted block
+                highlightedObject = hit.transform.parent.Find("LOD0").gameObject;
             }
-
-            Debug.DrawRay(playerCam.transform.position, transform.forward * reach, Color.red);
-        }
-        else
-        {
-            Debug.DrawRay(playerCam.transform.position, transform.forward * reach, Color.red);
+            else
+            {
+                // no block is currently highlighted
+                highlightedObject = null;
+            }
         }
     }
 
+    // return true if "from" is within range of "to"
     bool CloseTo(Transform from, Transform to)
     {
         float d = Vector3.Distance(from.position, to.position);
@@ -84,21 +96,12 @@ public class PlayerWorldView : MonoBehaviour
         return false;
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "ChunkNode")
-    //    {
-    //        chunkNodes.Add(other.gameObject);
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.tag == "ChunkNode")
-    //    {
-    //        chunkNodes.Remove(other.gameObject);
-
-    //        Destroy(other.transform.GetChild(0).gameObject);
-    //    }
-    //}
+    public GameObject getLastHighlightedObject()
+    {
+        return lastHighlightedObject;
+    }
+    public GameObject getHighlightedObject()
+    {
+        return highlightedObject;
+    }
 }
