@@ -26,8 +26,10 @@ public class ChunkManager : MonoBehaviour
         }
 
         reader = new StreamReader("Assets/StreamingAssets/" + fileName + ".txt");
-               
+
         GameObject stone = (GameObject)Resources.Load("Blocks/Stone", typeof(GameObject));
+        GameObject dirt = (GameObject)Resources.Load("Blocks/Dirt", typeof(GameObject));
+        GameObject grass = (GameObject)Resources.Load("Blocks/Grass", typeof(GameObject));
         GameObject air = (GameObject)Resources.Load("Blocks/Air", typeof(GameObject));
 
         // list of blocks in this chunk
@@ -57,13 +59,28 @@ public class ChunkManager : MonoBehaviour
         int i = 0;
         foreach (Transform block in transform)
         {
-            if (blocks[i] == "1")
+            switch (blocks[i])
             {
-                Instantiate(stone, block);
-            }
-            else
-            {
-                Instantiate(air, block);
+                case "stone":
+                    {
+                        Instantiate(stone, block);
+                        break;
+                    }
+                case "dirt":
+                    {
+                        Instantiate(dirt, block);
+                        break;
+                    }
+                case "grass":
+                    {
+                        Instantiate(grass, block);
+                        break;
+                    }
+                default:
+                    {
+                        Instantiate(air, block);
+                        break;
+                    }
             }
 
             i++;

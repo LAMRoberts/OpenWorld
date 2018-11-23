@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class HighlightScript : MonoBehaviour
 {
+    private struct Block
+    {
+        GameObject blockType;
+        Material defaultMaterial;
+        Material highlightedMaterial;
+    }
+
+    [SerializeField]
+    private Object[] defaultMaterials;
+    [SerializeField]
+    private Object[] highlightedMaterials;
+
+    [SerializeField]
+    private List<Block> blocks;
+
     public Material defaultMaterial;
     public Material highlightMaterial;
 
@@ -12,6 +27,13 @@ public class HighlightScript : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
+        defaultMaterials = Resources.LoadAll("Blocks/Materials/Default");
+
+        foreach (Material m in defaultMaterials)
+        {
+
+        }
     }
 
     public void Update()
