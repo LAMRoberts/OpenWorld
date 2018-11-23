@@ -12,20 +12,19 @@ public class ChunkManager : MonoBehaviour
     private List<string> blocks;
 
     StreamReader reader;
+    StreamWriter writer;
 
     void Start()
     {
         // set file to read and write from
-        fileName = transform.position.x.ToString() + " " + transform.position.z.ToString();
+        fileName = "Assets/StreamingAssets/" + transform.position.x.ToString() + " " + transform.position.z.ToString() + ".txt";
         
-        if (!File.Exists("Assets/StreamingAssets/" + fileName + ".txt"))
+        if (!File.Exists(fileName))
         {
-            FileUtil.CopyFileOrDirectory("Assets/StreamingAssets/default.txt", "Assets/StreamingAssets/" + fileName + ".txt");
-
-            Debug.Log(fileName);
+            FileUtil.CopyFileOrDirectory("Assets/StreamingAssets/default.txt", fileName);
         }
 
-        reader = new StreamReader("Assets/StreamingAssets/" + fileName + ".txt");
+        reader = new StreamReader(fileName);
 
         GameObject stone = (GameObject)Resources.Load("Blocks/Stone", typeof(GameObject));
         GameObject dirt = (GameObject)Resources.Load("Blocks/Dirt", typeof(GameObject));
@@ -85,5 +84,19 @@ public class ChunkManager : MonoBehaviour
 
             i++;
         }
+    }
+
+    public void DestroyBlock(Transform worldBlockNode)
+    {
+        Transform worldBlock = worldBlockNode.transform.GetChild(0);
+        int blockID = worldBlockNode.transform.GetSiblingIndex();
+
+        Destroy(worldBlock.gameObject);
+
+        string[] lines = File.ReadAllLines(fileName);
+        lines[blockID - 1] = "air";
+        File.WriteAllLines(fileName, lines);
+
+        Debug.Log(fileName.ToString());
     }
 }

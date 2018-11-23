@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 126252875}
   - component: {fileID: 126252876}
   - component: {fileID: 126252882}
+  - component: {fileID: 126252881}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -227,7 +228,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 126252874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.44, z: 0}
+  m_LocalPosition: {x: 0, y: 4.527, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1059651450}
@@ -235,6 +236,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &126252881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 126252874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60440c2b5832224daa2f14ac1d8e27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightedBlock: {fileID: 0}
+  highlightedBlockNode: {fileID: 0}
+  highlightedChunk: {fileID: 0}
 --- !u!114 &126252882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,8 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c658301c2162914cb61c76d9376257a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMaterial: {fileID: 2100000, guid: 04d8a11464b78564686fc13970c7e0bb, type: 2}
-  highlightMaterial: {fileID: 2100000, guid: aa48905fe02efd44194e1f8237abc14c, type: 2}
 --- !u!1 &499278610
 GameObject:
   m_ObjectHideFlags: 0
