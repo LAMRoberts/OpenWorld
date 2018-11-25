@@ -27,7 +27,6 @@ public class Mining : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Click");
             if (transform.GetComponent<PlayerWorldView>().getHighlightedObject() != null)
             {
                 highlightedChunk.GetComponent<ChunkManager>().DestroyBlock(highlightedBlockNode.transform);

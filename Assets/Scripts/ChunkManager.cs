@@ -12,7 +12,6 @@ public class ChunkManager : MonoBehaviour
     private List<string> blocks;
 
     StreamReader reader;
-    StreamWriter writer;
 
     void Start()
     {
@@ -26,9 +25,15 @@ public class ChunkManager : MonoBehaviour
 
         reader = new StreamReader(fileName);
 
-        GameObject stone = (GameObject)Resources.Load("Blocks/Stone", typeof(GameObject));
+        GameObject brick = (GameObject)Resources.Load("Blocks/Brick", typeof(GameObject));
+        GameObject cobble = (GameObject)Resources.Load("Blocks/Cobble", typeof(GameObject));
         GameObject dirt = (GameObject)Resources.Load("Blocks/Dirt", typeof(GameObject));
+        GameObject glass = (GameObject)Resources.Load("Blocks/Glass", typeof(GameObject));
         GameObject grass = (GameObject)Resources.Load("Blocks/Grass", typeof(GameObject));
+        GameObject log = (GameObject)Resources.Load("Blocks/Log", typeof(GameObject));
+        GameObject sand = (GameObject)Resources.Load("Blocks/Sand", typeof(GameObject));        
+        GameObject stone = (GameObject)Resources.Load("Blocks/Stone", typeof(GameObject));
+        GameObject wood = (GameObject)Resources.Load("Blocks/Wood", typeof(GameObject));
         GameObject air = (GameObject)Resources.Load("Air", typeof(GameObject));
 
         // list of blocks in this chunk
@@ -60,9 +65,14 @@ public class ChunkManager : MonoBehaviour
         {
             switch (blocks[i])
             {
-                case "stone":
+                case "brick":
                     {
-                        Instantiate(stone, block);
+                        Instantiate(brick, block);
+                        break;
+                    }
+                case "cobble":
+                    {
+                        Instantiate(cobble, block);
                         break;
                     }
                 case "dirt":
@@ -70,9 +80,34 @@ public class ChunkManager : MonoBehaviour
                         Instantiate(dirt, block);
                         break;
                     }
+                case "glass":
+                    {
+                        Instantiate(glass, block);
+                        break;
+                    }
                 case "grass":
                     {
                         Instantiate(grass, block);
+                        break;
+                    }
+                case "log":
+                    {
+                        Instantiate(log, block);
+                        break;
+                    }
+                case "sand":
+                    {
+                        Instantiate(sand, block);
+                        break;
+                    }
+                case "stone":
+                    {
+                        Instantiate(stone, block);
+                        break;
+                    }
+                case "wood":
+                    {
+                        Instantiate(wood, block);
                         break;
                     }
                 default:
@@ -97,6 +132,6 @@ public class ChunkManager : MonoBehaviour
         lines[blockID - 1] = "air";
         File.WriteAllLines(fileName, lines);
 
-        Debug.Log(fileName.ToString());
+        Debug.Log("Murdered a " + worldBlock.name + " block.");
     }
 }

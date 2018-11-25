@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4685664557465532}
   - component: {fileID: 205934169400207414}
   m_Layer: 0
-  m_Name: Stone
+  m_Name: Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +119,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 04d8a11464b78564686fc13970c7e0bb, type: 2}
+  - {fileID: 2100000, guid: beda9fcf5a6e1eb4fa3c105f744c37da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -154,7 +154,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 0fe10ed341991b04381d17f99b469133, type: 2}
+  - {fileID: 2100000, guid: 34ccb9cbe847c3944a5c510e01b06df1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,11 +224,11 @@ LODGroup:
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LODs:
-  - screenRelativeHeight: 0.09953539
+  - screenRelativeHeight: 0.096954666
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23090747344886768}
-  - screenRelativeHeight: 0.0101706
+  - screenRelativeHeight: 0.010421245
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23505373144229140}

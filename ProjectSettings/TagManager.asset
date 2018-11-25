@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ChunkNode
   - Cull Camera
+  - Camera
   layers:
   - Default
   - TransparentFX

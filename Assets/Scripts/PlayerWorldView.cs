@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerWorldView : MonoBehaviour
 {
-    public Camera playerCam;
-    public Camera cullCam;
     public Transform world;
     public float loadDistance;
     public List<GameObject> playerChunkNodes;
     public float reach;
+    public Camera playerCam;
+    public Camera cullCam;
 
     private Plane[] planes;
     private RaycastHit hit;
@@ -61,7 +61,7 @@ public class PlayerWorldView : MonoBehaviour
         }
         
         // raycast to block
-        if (Physics.Raycast(playerCam.transform.position, transform.forward, out hit))
+        if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit))
         {
             // if block is in range
             if (hit.distance < reach)

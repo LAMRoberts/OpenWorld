@@ -21,14 +21,21 @@ public class HighlightScript : MonoBehaviour
 
     private GameObject player;
 
+    [SerializeField]
+    Material[] defaultMaterials;
+    [SerializeField]
+    Material[] highlightedMaterials;
+    [SerializeField]
+    GameObject[] blockTypes;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        Material[] defaultMaterials = Resources.LoadAll<Material>("Materials/Default");
-        Material[] highlightedMaterials = Resources.LoadAll<Material>("Materials/Highlighted");
+        defaultMaterials = Resources.LoadAll<Material>("Materials/Default");
+        highlightedMaterials = Resources.LoadAll<Material>("Materials/Highlighted");
 
-        GameObject[] blockTypes = Resources.LoadAll<GameObject>("Blocks");
+        blockTypes = Resources.LoadAll<GameObject>("Blocks");
 
         blocks = new List<Block>();
 
