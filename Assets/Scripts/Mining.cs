@@ -29,7 +29,7 @@ public class Mining : MonoBehaviour
         {
             if (transform.GetComponent<PlayerWorldView>().getHighlightedObject() != null)
             {
-                highlightedChunk.GetComponent<ChunkManager>().DestroyBlock(highlightedBlockNode.transform);
+                highlightedChunk.GetComponent<ChunkManager>().StartCoroutine(highlightedChunk.GetComponent<ChunkManager>()._DestroyBlock(highlightedBlockNode.transform));
             }
         }
     }

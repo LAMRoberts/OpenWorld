@@ -4,47 +4,11 @@ using UnityEngine;
 
 public class HighlightScript : MonoBehaviour
 {
-    public struct Block
-    {
-        public GameObject blockType;
-        public Material defaultMaterial;
-        public Material highlightedMaterial;
-
-        public Block(GameObject bt, Material dm, Material hm)
-        {
-            blockType = bt;
-            defaultMaterial = dm;
-            highlightedMaterial = hm;
-        }
-    }
-    private List<Block> blocks;
-
     private GameObject player;
-
-    [SerializeField]
-    Material[] defaultMaterials;
-    [SerializeField]
-    Material[] highlightedMaterials;
-    [SerializeField]
-    GameObject[] blockTypes;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
-        defaultMaterials = Resources.LoadAll<Material>("Materials/Default");
-        highlightedMaterials = Resources.LoadAll<Material>("Materials/Highlighted");
-
-        blockTypes = Resources.LoadAll<GameObject>("Blocks");
-
-        blocks = new List<Block>();
-
-        for (int i = 0; i < blockTypes.Length; i++)
-        {
-            Block temp = new Block(blockTypes[i], defaultMaterials[i], highlightedMaterials[i]);
-
-            blocks.Add(temp);
-        }
     }
 
     public void Update()

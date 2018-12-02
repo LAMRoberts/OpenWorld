@@ -16,11 +16,11 @@ public class ChunkManager : MonoBehaviour
     void Start()
     {
         // set file to read and write from
-        fileName = "Assets/StreamingAssets/" + transform.position.x.ToString() + " " + transform.position.z.ToString() + ".txt";
-        
+        fileName = "Assets/ChunkData/" + transform.position.x.ToString() + " " + transform.position.z.ToString() + ".txt";
+
         if (!File.Exists(fileName))
         {
-            FileUtil.CopyFileOrDirectory("Assets/StreamingAssets/default.txt", fileName);
+            FileUtil.CopyFileOrDirectory("Assets/ChunkData/default.txt", fileName);
         }
 
         reader = new StreamReader(fileName);
@@ -121,17 +121,26 @@ public class ChunkManager : MonoBehaviour
         }
     }
 
-    public void DestroyBlock(Transform worldBlockNode)
+    public IEnumerator _DestroyBlock(Transform worldBlockNode)
     {
         Transform worldBlock = worldBlockNode.transform.GetChild(0);
         int blockID = worldBlockNode.transform.GetSiblingIndex();
 
         Destroy(worldBlock.gameObject);
 
+        fileName = "Assets/ChunkData/" + transform.position.x.ToString() + " " + transform.position.z.ToString() + ".txt";
+
+        if (!File.Exists(fileName))
+        {
+            FileUtil.CopyFileOrDirectory("Assets/ChunkData/default.txt", fileName);
+        }
+
         string[] lines = File.ReadAllLines(fileName);
         lines[blockID - 1] = "air";
         File.WriteAllLines(fileName, lines);
 
-        Debug.Log("Murdered a " + worldBlock.name + " block.");
+        Debug.Log("Murdered a " + worldBlock.name + " block at " + fileName);
+
+        yield return null;
     }
 }

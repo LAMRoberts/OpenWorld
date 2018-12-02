@@ -70,7 +70,7 @@ public class PlayerWorldView : MonoBehaviour
                 if (highlightedObject != null)
                 {
                     lastHighlightedObject = highlightedObject;
-                }                
+                }
 
                 // set highlighted block
                 highlightedObject = hit.transform.parent.Find("LOD0").gameObject;
