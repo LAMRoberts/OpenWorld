@@ -16,9 +16,9 @@ public class WorldGenerator : MonoBehaviour
         chunkNodePrefab = (GameObject)Resources.Load("ChunkNode", typeof(GameObject));
         chunkPrefab = (GameObject)Resources.Load("Chunk", typeof(GameObject));
 
-        for (int y = -256; y < 256; y += 16)
+        for (int y = 0; y < 512; y += 16)
         {
-            for (int x = -256; x < 256; x += 16)
+            for (int x = 0; x < 512; x += 16)
             {
                 GameObject c = Instantiate(chunkNodePrefab, transform);
                 c.transform.position = new Vector3(x + 8, 0.5f, y + 8);

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Transform world;
     public Transform forwards;
     public Transform leftwards;
     public Transform rightwards;
@@ -31,8 +32,6 @@ public class PlayerMovement : MonoBehaviour
 	
 	void Update ()
     {
-        Vector3 forward = new Vector3(playerCam.transform.forward.x, 0.0f, playerCam.transform.forward.z);
-
 		if (Input.GetKey("w"))
         {
             transform.position = Vector3.MoveTowards(transform.position, forwards.position, Time.deltaTime * moveSpeed);

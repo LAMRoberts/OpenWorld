@@ -13,17 +13,21 @@ public class ChunkManager : MonoBehaviour
 
     StreamReader reader;
 
+    public List<Transform> blocksToDelete;
+
     void Start()
     {
         // set file to read and write from
         fileName = "Assets/ChunkData/" + transform.position.x.ToString() + " " + transform.position.z.ToString() + ".txt";
 
-        if (!File.Exists(fileName))
+        if (File.Exists(fileName))
         {
-            FileUtil.CopyFileOrDirectory("Assets/ChunkData/default.txt", fileName);
+            reader = new StreamReader(fileName);
         }
-
-        reader = new StreamReader(fileName);
+        else
+        {
+            reader = new StreamReader("Assets/ChunkData/default.txt");
+        }
 
         GameObject brick = (GameObject)Resources.Load("Blocks/Brick", typeof(GameObject));
         GameObject cobble = (GameObject)Resources.Load("Blocks/Cobble", typeof(GameObject));
@@ -42,7 +46,7 @@ public class ChunkManager : MonoBehaviour
         // read file
         using (reader)
         {
-            // while not fucked up
+            // while not f'd up
             while (true)
             {
                 // read line
@@ -60,6 +64,7 @@ public class ChunkManager : MonoBehaviour
             }
         }
         
+        // instanciate blocks
         int i = 0;
         foreach (Transform block in transform)
         {
@@ -121,7 +126,20 @@ public class ChunkManager : MonoBehaviour
         }
     }
 
-    public IEnumerator _DestroyBlock(Transform worldBlockNode)
+    private void Update()
+    {
+        if (blocksToDelete.Count > 0)
+        {
+            foreach (Transform blockNode in blocksToDelete)
+            {
+                DestroyBlock(blockNode);
+            }
+
+            blocksToDelete.Clear();
+        }
+    }
+
+    private void DestroyBlock(Transform worldBlockNode)
     {
         Transform worldBlock = worldBlockNode.transform.GetChild(0);
         int blockID = worldBlockNode.transform.GetSiblingIndex();
@@ -140,7 +158,5 @@ public class ChunkManager : MonoBehaviour
         File.WriteAllLines(fileName, lines);
 
         Debug.Log("Murdered a " + worldBlock.name + " block at " + fileName);
-
-        yield return null;
     }
 }

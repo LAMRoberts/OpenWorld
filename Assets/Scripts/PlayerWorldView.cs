@@ -11,7 +11,6 @@ public class PlayerWorldView : MonoBehaviour
     public Camera playerCam;
     public Camera cullCam;
 
-    private Plane[] planes;
     private RaycastHit hit;
 
     [SerializeField]
@@ -23,15 +22,13 @@ public class PlayerWorldView : MonoBehaviour
     {
         playerChunkNodes = new List<GameObject>();
 
-        loadDistance += Mathf.Abs(cullCam.transform.position.z);
+        loadDistance += Mathf.Abs(cullCam.transform.localPosition.z);
 
         hit = new RaycastHit();
     }
 
     private void Update()
     {
-        planes = GeometryUtility.CalculateFrustumPlanes(cullCam);
-
         foreach (Transform worldChunkNode in world)
         {
             if (worldChunkNode.tag == "ChunkNode")
@@ -40,7 +37,7 @@ public class PlayerWorldView : MonoBehaviour
                 {
                     Collider c = worldChunkNode.GetComponent<Collider>();
 
-                    if (GeometryUtility.TestPlanesAABB(planes, c.bounds))
+                    if (GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(cullCam), c.bounds))
                     {
                         if (!playerChunkNodes.Contains(worldChunkNode.gameObject))
                         {
@@ -96,11 +93,11 @@ public class PlayerWorldView : MonoBehaviour
         return false;
     }
 
-    public GameObject getLastHighlightedObject()
+    public GameObject GetLastHighlightedObject()
     {
         return lastHighlightedObject;
     }
-    public GameObject getHighlightedObject()
+    public GameObject GetHighlightedObject()
     {
         return highlightedObject;
     }

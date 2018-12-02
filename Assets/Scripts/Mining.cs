@@ -18,18 +18,18 @@ public class Mining : MonoBehaviour
 
     private void Update ()
     {
-        if (transform.GetComponent<PlayerWorldView>().getHighlightedObject() != null)
+        if (transform.GetComponent<PlayerWorldView>().GetHighlightedObject() != null)
         {
-            highlightedBlock = transform.GetComponent<PlayerWorldView>().getHighlightedObject().transform.parent.gameObject;
+            highlightedBlock = transform.GetComponent<PlayerWorldView>().GetHighlightedObject().transform.parent.gameObject;
             highlightedBlockNode = highlightedBlock.transform.parent.gameObject;
             highlightedChunk = highlightedBlockNode.transform.parent.gameObject;
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (transform.GetComponent<PlayerWorldView>().getHighlightedObject() != null)
+            if (transform.GetComponent<PlayerWorldView>().GetHighlightedObject() != null)
             {
-                highlightedChunk.GetComponent<ChunkManager>().StartCoroutine(highlightedChunk.GetComponent<ChunkManager>()._DestroyBlock(highlightedBlockNode.transform));
+                highlightedChunk.GetComponent<ChunkManager>().blocksToDelete.Add(highlightedBlockNode.transform);
             }
         }
     }

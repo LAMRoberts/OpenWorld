@@ -13,14 +13,14 @@ public class HighlightScript : MonoBehaviour
 
     public void Update()
     {
-        if (player.GetComponent<PlayerWorldView>().getLastHighlightedObject() != null)
+        if (player.GetComponent<PlayerWorldView>().GetLastHighlightedObject() != null)
         {
-            player.GetComponent<PlayerWorldView>().getLastHighlightedObject().GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            player.GetComponent<PlayerWorldView>().GetLastHighlightedObject().GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
 
-        if (player.GetComponent<PlayerWorldView>().getHighlightedObject() != null)
+        if (player.GetComponent<PlayerWorldView>().GetHighlightedObject() != null)
         {
-            player.GetComponent<PlayerWorldView>().getHighlightedObject().GetComponent<Renderer>().material.color = new Color(0.5f, 0.75f, 1.0f, 1.0f);          
+            player.GetComponent<PlayerWorldView>().GetHighlightedObject().GetComponent<Renderer>().material.color = new Color(0.5f, 0.75f, 1.0f, 1.0f);          
         }
     }
 }
