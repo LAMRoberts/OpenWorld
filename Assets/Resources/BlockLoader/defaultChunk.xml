@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BlockCollection>
+  <Blocks>
+    <Block name="Dirt">
+      <xPos>0.0</xPos>
+      <yPos>0.0</yPos>
+      <zPos>0.0</zPos>
+    </Block>
+    <Block name="Grass">
+      <xPos>0.0</xPos>
+      <yPos>0.0</yPos>
+      <zPos>0.0</zPos>
+    </Block>
+    <Block name="Stone">
+      <xPos>0.0</xPos>
+      <yPos>0.0</yPos>
+      <zPos>0.0</zPos>
+    </Block>
+    <Block name="Air">
+      <xPos>0.0</xPos>
+      <yPos>0.0</yPos>
+      <zPos>0.0</zPos>
+    </Block>
+  </Blocks>
+</BlockCollection>

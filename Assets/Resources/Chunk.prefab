@@ -1521,7 +1521,6 @@ GameObject:
   - component: {fileID: 4461606012353778}
   - component: {fileID: 2569400268299100464}
   - component: {fileID: 114814528633342600}
-  - component: {fileID: 114595138709611136}
   m_Layer: 0
   m_Name: Chunk
   m_TagString: Untagged
@@ -29738,18 +29737,6 @@ Transform:
   m_Father: {fileID: 4461606012353778}
   m_RootOrder: 552
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114595138709611136
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1093828330306576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 995a0c8483c46e34eb6dc2d3b894da79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcs: []
 --- !u!114 &114814528633342600
 MonoBehaviour:
   m_ObjectHideFlags: 1
