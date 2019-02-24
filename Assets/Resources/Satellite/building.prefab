@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4685664557465532}
   - component: {fileID: 205934169400207414}
   m_Layer: 0
-  m_Name: Log
+  m_Name: building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ Transform:
   m_GameObject: {fileID: 1761292365955088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 20, y: 1, z: 20}
   m_Children:
   - {fileID: 4367116543625342}
   - {fileID: 4874203632225382}
@@ -119,7 +119,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: beda9fcf5a6e1eb4fa3c105f744c37da, type: 2}
+  - {fileID: 2100000, guid: dfecadab0757f8449a8ca2562a880c26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -154,7 +154,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 34ccb9cbe847c3944a5c510e01b06df1, type: 2}
+  - {fileID: 2100000, guid: 1fcae845505a9ea49be122730bae3684, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,11 +224,11 @@ LODGroup:
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LODs:
-  - screenRelativeHeight: 0.025094677
+  - screenRelativeHeight: 0.027639056
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23090747344886768}
-  - screenRelativeHeight: 0.0011301775
+  - screenRelativeHeight: 0.0015000001
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23505373144229140}
