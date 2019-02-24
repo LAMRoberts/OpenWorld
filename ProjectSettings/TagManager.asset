@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - ChunkNode
+  - Cull Camera
+  - Camera
   layers:
   - Default
   - TransparentFX
