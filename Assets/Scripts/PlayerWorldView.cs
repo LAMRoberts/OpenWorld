@@ -56,7 +56,12 @@ public class PlayerWorldView : MonoBehaviour
                 }
             }
         }
-        
+
+        RaycastToBlock();
+    }
+
+    void RaycastToBlock()
+    {
         // raycast to block
         if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit))
         {

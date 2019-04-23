@@ -7,6 +7,8 @@ TagManager:
   - ChunkNode
   - Cull Camera
   - Camera
+  - Block
+  - LOD0
   layers:
   - Default
   - TransparentFX
