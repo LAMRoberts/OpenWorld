@@ -34,7 +34,7 @@ public class SatelliteChunkManager : MonoBehaviour
         //GameObject grassB = (GameObject)Resources.Load("Satellite/grassB", typeof(GameObject));
         //GameObject river = (GameObject)Resources.Load("Satellite/river", typeof(GameObject));
         //GameObject water = (GameObject)Resources.Load("Satellite/water", typeof(GameObject));
-        //GameObject forest = (GameObject)Resources.Load("Satellite/forest", typeof(GameObject));
+        GameObject forest = (GameObject)Resources.Load("Satellite/forest", typeof(GameObject));
         //GameObject house = (GameObject)Resources.Load("Satellite/house", typeof(GameObject));
         //GameObject sandB = (GameObject)Resources.Load("Satellite/sandB", typeof(GameObject));
         GameObject air = (GameObject)Resources.Load("air", typeof(GameObject));
@@ -69,7 +69,7 @@ public class SatelliteChunkManager : MonoBehaviour
         {
             switch (blocks[i])
             {
-                case "building":
+                case "BUILDING":
                     {
                         Instantiate(building, block);
                         break;
@@ -94,11 +94,11 @@ public class SatelliteChunkManager : MonoBehaviour
                 //        Instantiate(water, block);
                 //        break;
                 //    }
-                //case "forest":
-                //    {
-                //        Instantiate(forest, block);
-                //        break;
-                //    }
+                case "FOREST":
+                    {
+                        Instantiate(forest, block);
+                        break;
+                    }
                 //case "house":
                 //    {
                 //        Instantiate(house, block);
